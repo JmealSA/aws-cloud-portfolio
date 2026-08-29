@@ -1,18 +1,25 @@
 # AWS Cloud Portfolio
 
-A small portfolio site I built and deployed while learning AWS.
+A personal portfolio website that I built and deployed using AWS.
 
-I wanted to keep this project simple and understand the services I was using instead of adding a bunch of AWS services just for the sake of it. The website is stored in a private S3 bucket and served through CloudFront.
+I made this project to get hands-on experience with AWS instead of only reading about cloud services. The website is stored in a private S3 bucket and delivered through CloudFront. I also connected my own domain using Route 53 and added HTTPS using an AWS certificate.
 
-## Live Site
+## Live Website
 
-https://d112dkejk8zr2b.cloudfront.net
+https://jamilsaad.com
 
-## AWS Services
+## Technologies Used
 
+### Frontend
+- HTML
+- CSS
+- JavaScript
+
+### AWS
 - Amazon S3
 - Amazon CloudFront
-- S3 bucket policies
+- Amazon Route 53
+- AWS Certificate Manager (ACM)
 - CloudFront Origin Access Control (OAC)
 
 ## How It Works
@@ -21,7 +28,13 @@ https://d112dkejk8zr2b.cloudfront.net
 User
   |
   v
-CloudFront
+jamilsaad.com
+  |
+  v
+Route 53
+  |
+  v
+CloudFront + HTTPS
   |
   v
 Private S3 Bucket
@@ -31,84 +44,81 @@ Private S3 Bucket
   +-- app.js
 ```
 
-The website files are stored in S3, but the bucket itself is not public.
+## What I Set Up
 
-CloudFront is allowed to retrieve the files from S3 and serve them to visitors. Direct requests to the S3 objects return `AccessDenied`.
+### Amazon S3
 
-This lets the site stay publicly accessible without making the S3 bucket public.
+The website files are stored in an S3 bucket.
+
+The bucket is private and Block Public Access is enabled. Opening the S3 object URL directly returns an Access Denied response.
+
+### Amazon CloudFront
+
+CloudFront is the public entry point for the website.
+
+I configured CloudFront to access the private S3 bucket using Origin Access Control (OAC). This allows CloudFront to serve the files without making the S3 bucket public.
+
+I also set `index.html` as the default root object.
+
+### Route 53
+
+I registered and configured `jamilsaad.com` using Route 53.
+
+The domain has an alias record that routes traffic to my CloudFront distribution.
+
+### HTTPS
+
+I created an SSL/TLS certificate through AWS Certificate Manager and connected it to the CloudFront distribution.
+
+The portfolio can be accessed securely through:
+
+https://jamilsaad.com
+
+## Updating the Website
+
+When I make changes to the website:
+
+1. Update the HTML, CSS, or JavaScript locally.
+2. Upload the updated files to the S3 bucket.
+3. Create a CloudFront cache invalidation if the old version is still being served.
 
 ## Project Structure
 
 ```text
 aws-cloud-portfolio/
-├── frontend/
-│   ├── index.html
-│   ├── styles.css
-│   └── app.js
-├── aws/
-│   └── cloudfront-bucket-policy.json
-├── docs/
-│   ├── setup-notes.md
-│   └── interview-notes.md
-├── .gitignore
-└── README.md
+|
+|-- frontend/
+|   |-- index.html
+|   |-- styles.css
+|   `-- app.js
+|
+|-- aws/
+|   `-- cloudfront-bucket-policy.json
+|
+|-- docs/
+|   |-- setup-notes.md
+|   `-- interview-notes.md
+|
+|-- .gitignore
+`-- README.md
 ```
-
-## Deployment
-
-I created an S3 bucket and uploaded the frontend files to the root of the bucket.
-
-Public access to the bucket is blocked.
-
-I then created a CloudFront distribution with the S3 bucket as its origin and allowed CloudFront to access the private bucket.
-
-The default root object is:
-
-```text
-index.html
-```
-
-Once the distribution finished deploying, the site became available through the CloudFront domain.
-
-## Testing the Setup
-
-I tested both ways of accessing the site.
-
-```text
-CloudFront URL  -> Website loads
-S3 Object URL   -> AccessDenied
-```
-
-This confirmed that visitors are getting the site through CloudFront and cannot access the S3 files directly.
-
-## Updating the Site
-
-When I make changes to the frontend, I upload the updated files to S3.
-
-If CloudFront is still serving an older cached version, I can create an invalidation for:
-
-```text
-/*
-```
-
-That forces CloudFront to retrieve the updated files.
 
 ## What I Learned
 
-This project helped me understand how S3 and CloudFront work together.
+This project gave me hands-on practice with:
 
-S3 is responsible for storing the files, while CloudFront is responsible for delivering them to users.
+- Hosting static files with S3
+- Keeping an S3 bucket private
+- Using CloudFront to deliver a website
+- Configuring CloudFront Origin Access Control
+- Connecting a custom domain with Route 53
+- Setting up HTTPS with AWS Certificate Manager
+- Working with DNS records
+- Using CloudFront cache invalidations
+- Setting up an AWS budget to keep track of costs
 
-The biggest thing I learned was that hosting a public website does not mean the S3 bucket itself needs to be public. CloudFront can be given permission to access the bucket while direct public access stays blocked.
+## Why I Built This
 
-I also got hands-on experience configuring a CloudFront distribution, working with bucket permissions, testing access restrictions, and deploying changes through the AWS console.
+I wanted a small AWS project that I could build myself and understand from start to finish.
 
-## Next Steps
-
-Some things I may add later:
-
-- Custom domain
-- Route 53
-- AWS Certificate Manager
-- CloudWatch monitoring
-- Automatic deployment from GitHub
+It helped me understand how AWS services can work together to host and securely deliver a real website instead of only learning the concepts individually.
