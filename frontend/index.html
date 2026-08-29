@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Jamil Saad - Computer Science student and software projects">
+    <title>Jamil Saad | Computer Science</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container nav-wrap">
+            <a class="name-link" href="#top">Jamil Saad</a>
+
+            <nav aria-label="Main navigation">
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#aws">AWS</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="top">
+        <section class="hero container">
+            <p class="eyebrow">Computer Science Student</p>
+
+            <h1>I build small projects I can actually explain.</h1>
+
+            <p class="hero-copy">
+                I work mainly with C++ and Python and I'm currently learning AWS
+                by deploying projects and working with cloud services directly.
+            </p>
+
+            <div class="hero-links">
+                <a class="button primary"
+                   href="https://github.com/JmealSA"
+                   target="_blank"
+                   rel="noreferrer">
+                    GitHub
+                </a>
+
+                <a class="button secondary"
+                   href="https://www.linkedin.com/in/jamil-saad-70a069405"
+                   target="_blank"
+                   rel="noreferrer">
+                    LinkedIn
+                </a>
+            </div>
+        </section>
+
+        <section id="about" class="section container">
+            <div class="section-heading">
+                <p class="eyebrow">About</p>
+                <h2>What I'm working on</h2>
+            </div>
+
+            <div class="two-column">
+                <p>
+                    I'm a computer science student building my programming skills through
+                    projects in C++, Python, web development, and AWS. I like projects that
+                    are small enough to understand completely and useful enough to keep improving.
+                </p>
+
+                <div class="skill-list">
+                    <span>C++</span>
+                    <span>Python</span>
+                    <span>Flask</span>
+                    <span>HTML/CSS</span>
+                    <span>JavaScript</span>
+                    <span>Git/GitHub</span>
+                    <span>VS Code</span>
+                    <span>AWS</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section container">
+            <div class="section-heading">
+                <p class="eyebrow">Projects</p>
+                <h2>Things I've built</h2>
+            </div>
+
+            <div class="project-grid">
+                <article class="project-card">
+                    <p class="project-number">01</p>
+                    <h3>Trackademic</h3>
+                    <p>
+                        A Flask GPA tracker with account creation, login,
+                        saved GPA history, and JSON-backed user data.
+                    </p>
+                    <p class="stack">Python · Flask · HTML · JSON</p>
+                </article>
+
+                <article class="project-card">
+                    <p class="project-number">02</p>
+                    <h3>Internship Application Tracker</h3>
+                    <p>
+                        A C++ project for organizing internship applications while practicing
+                        classes, containers, file handling, and basic data structures.
+                    </p>
+                    <p class="stack">C++ · STL · File I/O</p>
+                </article>
+
+                <article class="project-card">
+                    <p class="project-number">03</p>
+                    <h3>A&amp;C Beauty Website</h3>
+                    <p>
+                        A small business website I built and deployed for a local business.
+                        It gave me experience taking a project from code to a live website.
+                    </p>
+                    <p class="stack">HTML · CSS · JavaScript · Vercel</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="aws" class="section container">
+            <div class="section-heading">
+                <p class="eyebrow">AWS Project</p>
+                <h2>This website is part of the project.</h2>
+            </div>
+
+            <div class="aws-box">
+                <p>
+                    The website files are stored in a private Amazon S3 bucket and delivered
+                    through Amazon CloudFront. CloudFront uses Origin Access Control to read
+                    the S3 bucket without making the bucket itself public.
+                </p>
+
+                <div class="architecture">
+                    <code>Browser → CloudFront → Private S3</code>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section container">
+            <div class="section-heading">
+                <p class="eyebrow">Contact</p>
+                <h2>Get in touch</h2>
+            </div>
+
+            <div class="contact-box">
+                <p>
+                    I'm currently building my experience through programming and cloud projects.
+                    Feel free to reach out.
+                </p>
+
+                <a class="button primary"
+                   href="mailto:Jamilsaad7@icloud.com">
+                    Email Me
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-wrap">
+            <p>Built by Jamil Saad.</p>
+            <p>&copy; <span id="year"></span></p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
